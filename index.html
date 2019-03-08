@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>what is vue??</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <div id="app">
+      <ul>
+        <h2>los artistas más populares en México en la plataforma last.fm</h2>
+        <li v-for="topartist in topartists">
+          {{ topartist.name }}
+        </li>
+      </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          topartists: []
+        },
+        created() {
+          fetch(
+            "https://ws.audioscrobbler.com/2.0/?method=geo.gettopartists&country=mexico&api_key=50cf1278ee7a96902b8303fc32cc0392&format=json"
+          )
+            .then(response => response.json())
+            .then(json => {
+              this.topartists = json.topartists.artist
+              console.log(this.topartists)
+            })
+        }
+      })
+    </script>
+  </body>
+</html>

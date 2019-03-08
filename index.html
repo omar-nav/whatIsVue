@@ -12,6 +12,11 @@
         <h2>los artistas más populares en México en la plataforma last.fm</h2>
         <li v-for="topartist in topartists">
           {{ topartist.name }}
+          <span v-if="topartist.name === `Café Tacvba`">
+            <a href="https://es.wikipedia.org/wiki/Caf%C3%A9_Tacvba"
+              >los vi dos veces!</a
+            ></span
+          >
         </li>
       </ul>
     </div>
